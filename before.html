@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .banner{
+            border: 1px solid green;
+            width: 1200px;
+           
+            text-align: center;
+            padding: 20px 20px;
+            letter-spacing: 5px;
+            font-size: xx-large;
+            font-weight: 1000;
+            background-color: rgb(7, 214, 14);
+            position: relative;
+            border-radius: 7px;
+            margin: auto;
+          
+        }
+        .banner::before{
+            content: 'hii da';
+            position: absolute;
+            width: 1200px;
+            border: 1px solid green;
+            background-color: rgb(216, 22, 29);
+            padding: 20px 20px;
+            border-radius: 7px;
+            top: 0;
+            left: 0;
+
+            clip-path: circle(0 at 0 0 );
+            transition: clip-path 1s ease;
+
+
+        }
+        .banner:hover::before{
+            clip-path: circle(150% at 0 0 );
+        }
+
+    </style>
+</head>
+<body>
+    <div class="banner">One man army</div>
+</body>
+</html>
