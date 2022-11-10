@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+           
+            width: 100%;
+            height: 100vh;
+            background-color: royalblue;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+
+          
+        }
+        .inp{
+          background-color: transparent;
+          border-radius: 50%;
+          height: 100px;
+          width: 100px;
+        }
+        .container{
+            width: 330px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(155,255,255,.2);
+            position: relative;
+            /* border-radius: 10px; */
+           
+
+          
+        }
+        #dob{
+            position: absolute;
+            top: 30px;
+            left: 30px;
+           
+          
+        }
+        input{
+            padding: 6px 0;
+        }
+        #submit{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            padding: 7px 0;
+           
+           
+        }
+        p{
+           color: blue;
+            padding: 10px 0;
+            font-weight: 600;
+
+            
+           
+        }
+        span {
+        position: absolute;
+        border-radius: 100vmax;
+      }
+
+      .top {
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          transparent 50%,
+          rgba(255, 49, 49, 0.5),
+          rgb(255, 49, 49)
+        );
+      }
+
+      .bottom {
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          rgb(57, 255, 20),
+          rgba(57, 255, 20, 0.5),
+          transparent 50%
+        );
+      }
+
+      .right {
+        top: 0;
+        right: 0;
+        width: 5px;
+        height: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 30%,
+          rgba(0, 255, 255, 0.5),
+          rgb(0, 255, 255)
+        );
+      }
+
+      .left {
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        height: 0;
+        background: linear-gradient(
+          180deg,
+          rgb(255, 255, 113),
+          rgba(255, 255, 113, 0.5),
+          transparent 70%
+        );
+      }
+
+      .top {
+        animation: animateTop 3s ease-in-out infinite;
+      }
+
+      .bottom {
+        animation: animateBottom 3s ease-in-out infinite;
+      }
+
+      .right {
+        animation: animateRight 3s linear infinite;
+      }
+
+      .left {
+        animation: animateLeft 3s ease-in-out infinite;
+      }
+
+      @keyframes animateTop {
+        25% {
+          width: 100%;
+          opacity: 1;
+        }
+
+        30%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateBottom {
+        0%,
+        50% {
+          opacity: 0;
+          width: 0;
+        }
+
+        75% {
+          opacity: 1;
+          width: 100%;
+        }
+
+        76%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateRight {
+        0%,
+        25% {
+          opacity: 0;
+          height: 0;
+        }
+
+        50% {
+          opacity: 1;
+          height: 100%;
+        }
+
+        55%,
+        100% {
+          height: 100%;
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateLeft {
+        0%,
+        75% {
+          opacity: 0;
+          bottom: 0;
+          height: 0;
+        }
+
+        100% {
+          opacity: 1;
+          height: 100%;
+        }
+      }
+    
+      
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="datetime-local" id="dob">
+        <button id="submit">Enter</button>
+        <p id="year"></p>
+        <p id="month"></p>
+        <p id="week"></p>
+        <p id="day"></p>
+        <p id="hour"></p>
+        <p id="min"></p>
+        <p id="sec"></p>
+
+        <span class="top"></span>
+        <span class="right"></span>
+        <span class="bottom"></span>
+        <span class="left"></span>
+    </div>
+    <div class="input">
+      <input type="color" class="inp" id="inp">
+    </div>
+   
+    
+    <script>
+        document.querySelector("#submit").addEventListener("click",function(){
+           const update = function(){
+            let dob = document.querySelector("#dob").value,
+            day = new Date(dob),
+            time = day.getTime(),
+            today = new Date(),
+            timenow = today.getTime(),
+            value = timenow-time,
+            sec = Math.floor(value/1000),
+            min = Math.floor(value/(1000*60)),
+            hour = Math.floor(value/(1000*60*60)),
+            days = Math.floor(value/(1000*60*60*24)),
+            week = Math.floor(value/(1000*60*60*24*7)),
+            month = Math.floor(value/(1000*60*60*24*30.4375)),
+            year = Math.floor(value/(1000*60*60*24*365.25));
+
+            let insert = function(x,y){
+                document.querySelector(x).innerHTML = y;
+            }
+            insert("#year",year + "-Years");
+            insert("#month",month + "-Months");
+            insert("#week",week + "-Weeks");
+            insert("#day",days + "-Days");
+            insert("#hour",hour + "-Hours");
+            insert("#min",min + "-minutes");
+            insert("#sec",sec + "-Seconds");
+
+           } 
+           setInterval(update,1000);
+        })
+
+var color=document.getElemenById('inp').value;
+console.log(color);
+        
+    </script>
+</body>
+</html>
